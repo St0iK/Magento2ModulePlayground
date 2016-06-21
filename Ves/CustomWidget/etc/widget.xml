@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+    <widget id="ves_customwidget" class="Magento\Framework\View\Element\Template">
+        <label translate="true">Contact Informations Widget</label>
+        <description>Widget in Magento2</description>
+        <parameters>
+             <parameter name="image" xsi:type="block" required="true" visible="true" sort_order="10">
+                <label translate="true">Background image</label>
+                <block class="Ves\CustomWidget\Block\Adminhtml\Widget\ImageChooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="text" xsi:type="block" required="true" visible="true" sort_order="3">
+                <label translate="true">Text</label>
+                <block class="Ves\CustomWidget\Block\Adminhtml\Widget\TextField"/>
+            </parameter> 
+            <parameter name="cc_enable_url" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="20">
+                <label translate="true">Add URL like</label>
+                <description>Enable or disable link</description>
+            </parameter>
+            <parameter name="gender" xsi:type="select" source_model="Ves\CustomWidget\Model\Config\Source\StaticBlock" visible="true" sort_order="100" >
+                <label translate="true">StaticBlock</label>
+                <depends>
+                    <parameter name="cc_enable_url" value="1" />
+                    
+                </depends>
+            </parameter>
+        </parameters>
+        
+    </widget>
+</widgets>
